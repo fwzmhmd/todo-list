@@ -23,8 +23,10 @@ const listTodos = () => {
     .map(todo => {
       return `<li>
                 <div>${todo}</div>
-                <button class="done">Done</button>
-                <button class="delete">Delete</button>
+                <div class="btn-group">
+                  <button class="done">Done</button>
+                  <button class="delete">Delete</button>
+                </div>
               </li>`;
     })
     .join('');
@@ -33,8 +35,10 @@ const listTodos = () => {
     .map(c => {
       return `<li>
                 <div>${c}</div>
-                <button class="undo">Undo</button>
-                <button class="delete">Delete</button>
+                <div class="btn-group">
+                  <button class="undo">Undo</button>
+                  <button class="delete">Delete</button>
+                </div>
               </li>`;
     })
     .join('');
