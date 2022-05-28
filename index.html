@@ -14,27 +14,29 @@
     <title>Todo Planner</title>
   </head>
   <body>
-    <h1>Todo Planner</h1>
+    <div id="box">
+      <h1>Todo Planner</h1>
 
-    <div class="add-todo">
-      <label for="">Add Todo:</label>
-      <input type="text" />
-      <button class="add-btn">+</button>
+      <div class="add-todo">
+        <label for="">Add Todo:</label>
+        <input type="text" />
+        <button class="add-btn">+</button>
+      </div>
+
+      <h2>To-Dos</h2>
+
+      <ul class="todo-list">
+        <li>
+          <div>Go somewhere</div>
+          <button>Done</button>
+        </li>
+        <li>Go somewhere <button>Done</button></li>
+      </ul>
+      <h2>Completed</h2>
+      <ul class="complete-list">
+        <li><s>Go skiing</s></li>
+      </ul>
     </div>
-
-    <h2>To-Dos</h2>
-
-    <ul class="todo-list">
-      <li>
-        <div>Go somewhere</div>
-        <button>Done</button>
-      </li>
-      <li>Go somewhere <button>Done</button></li>
-    </ul>
-    <h2>Completed</h2>
-    <ul class="complete-list">
-      <li><s>Go skiing</s></li>
-    </ul>
     <script src="script.js"></script>
   </body>
 </html>
