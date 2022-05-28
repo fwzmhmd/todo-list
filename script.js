@@ -1,20 +1,18 @@
-const todoArr = ['book flights', 'bake cake', 'read book', 'go for run'];
+const todoArr = ['book flights', 'bake cake', 'read book'];
 const completedTodosArr = [];
 
 const todoList = document.querySelector('.todo-list');
 const completeList = document.querySelector('.complete-list');
-const addTodo = document.querySelector('.add-todo');
+const todoForm = document.querySelector('#todo-form');
 
-addTodo.addEventListener('click', e => {
+todoForm.addEventListener('submit', e => {
   e.preventDefault();
-  if (e.target.className === 'add-btn') {
-    const input = e.target.previousElementSibling;
+  const input = e.target[0];
 
-    if (input.value !== '') {
-      todoArr.unshift(input.value);
-      input.value = '';
-      listTodos();
-    }
+  if (input.value !== '') {
+    todoArr.unshift(input.value);
+    input.value = '';
+    listTodos();
   }
 });
 
@@ -22,7 +20,7 @@ const listTodos = () => {
   const todos = todoArr
     .map(todo => {
       return `<li>
-                <div>${todo}</div>
+                <div class="list-text">${todo}</div>
                 <div class="btn-group">
                   <button class="done">Done</button>
                   <button class="delete">Delete</button>
@@ -34,7 +32,7 @@ const listTodos = () => {
   const compTodos = completedTodosArr
     .map(c => {
       return `<li>
-                <div>${c}</div>
+                <div class="list-text">${c}</div>
                 <div class="btn-group">
                   <button class="undo">Undo</button>
                   <button class="delete">Delete</button>
