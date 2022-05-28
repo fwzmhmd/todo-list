@@ -60,9 +60,11 @@ todoList.addEventListener('click', e => {
   if (target.nodeName === 'BUTTON') {
     if (target.className === 'done') {
       const arrIndex = todoArr.indexOf(
-        target.previousElementSibling.textContent
+        target.parentNode.previousElementSibling.textContent
       );
-      completedTodosArr.unshift(target.previousElementSibling.textContent);
+      completedTodosArr.unshift(
+        target.parentNode.previousElementSibling.textContent
+      );
 
       todoArr.splice(arrIndex, 1);
       target.parentNode.remove();
@@ -70,7 +72,7 @@ todoList.addEventListener('click', e => {
 
     if (target.className === 'delete') {
       const arrIndex = todoArr.indexOf(
-        target.previousElementSibling.previousElementSibling.textContent
+        target.parentNode.previousElementSibling.textContent
       );
       todoArr.splice(arrIndex, 1);
     }
@@ -85,16 +87,16 @@ completeList.addEventListener('click', e => {
   if (target.nodeName === 'BUTTON') {
     if (target.className === 'undo') {
       const arrIndex = completedTodosArr.indexOf(
-        target.previousElementSibling.textContent
+        target.parentNode.previousElementSibling.textContent
       );
-      todoArr.push(target.previousElementSibling.textContent);
+      todoArr.push(target.parentNode.previousElementSibling.textContent);
 
       completedTodosArr.splice(arrIndex, 1);
       target.parentNode.remove();
     }
     if (target.className === 'delete') {
       const arrIndex = completedTodosArr.indexOf(
-        target.previousElementSibling.previousElementSibling.textContent
+        target.parentNode.previousElementSibling.textContent
       );
       completedTodosArr.splice(arrIndex, 1);
     }
