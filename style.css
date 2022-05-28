@@ -1,13 +1,23 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   font-family: 'Quicksand', sans-serif;
   font-size: 1.5rem;
+  background-color: #e6e6e6;
 }
 li {
   list-style-type: none;
   text-transform: capitalize;
+}
+
+#box {
+  background-color: #fff;
+  max-width: 30%;
+  margin: 40px auto;
+  padding: 20px 50px 40px;
+  box-shadow: 0px 6px 12px 3px rgba(0, 0, 0, 0.2);
 }
