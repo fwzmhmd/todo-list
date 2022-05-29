@@ -4,6 +4,7 @@ const completedTodosArr = [];
 const todoList = document.querySelector('.todo-list');
 const completeList = document.querySelector('.complete-list');
 const todoForm = document.querySelector('#todo-form');
+const toggleBtn = document.querySelector('.toggle-btn');
 
 todoForm.addEventListener('submit', e => {
   e.preventDefault();
@@ -101,4 +102,12 @@ completeList.addEventListener('click', e => {
 
     listTodos();
   }
+});
+
+toggleBtn.addEventListener('click', e => {
+  e.preventDefault();
+  document.body.classList.toggle('dark');
+  e.target.innerText === 'Dark Mode'
+    ? (e.target.innerText = 'Light Mode')
+    : (e.target.innerText = 'Dark Mode');
 });
