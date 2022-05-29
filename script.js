@@ -17,30 +17,22 @@ todoForm.addEventListener('submit', e => {
   }
 });
 
-const listTodos = () => {
-  const todos = todoArr
-    .map(todo => {
-      return `<li>
-                <div class="list-text">${todo}</div>
-                <div class="btn-group">
-                  <button class="done">Done</button>
-                  <button class="delete">Delete</button>
-                </div>
-              </li>`;
-    })
-    .join('');
+// Generate list item
+const genLi = (todo, state) => {
+  return `<li>
+    <div class="list-text">${todo}</div>
+    <div class="btn-group">
+      <button class="${state}"><i class="fa-solid
+        ${state === 'done' ? `fa-check` : `fa-rotate-left`}"></i>
+      </button>
+      <button class="delete"><i class="fa-solid fa-trash"></i></button>
+    </div>
+  </li>`;
+};
 
-  const compTodos = completedTodosArr
-    .map(c => {
-      return `<li>
-                <div class="list-text">${c}</div>
-                <div class="btn-group">
-                  <button class="undo">Undo</button>
-                  <button class="delete">Delete</button>
-                </div>
-              </li>`;
-    })
-    .join('');
+const listTodos = () => {
+  const todos = todoArr.map(todo => genLi(todo, 'done')).join('');
+  const compTodos = completedTodosArr.map(todo => genLi(todo, 'undo')).join('');
 
   completedTodosArr.length < 1
     ? (completeList.innerHTML = `<h3>All completed</h3>`)
