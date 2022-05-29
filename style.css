@@ -45,6 +45,10 @@ button {
   cursor: pointer;
 }
 
+button > * {
+  pointer-events: none;
+}
+
 .done {
   background-color: #007500;
   color: #fff;
