@@ -99,7 +99,7 @@ completeList.addEventListener('click', e => {
 toggleBtn.addEventListener('click', e => {
   e.preventDefault();
   document.body.classList.toggle('dark');
-  e.target.innerText === 'Dark Mode'
-    ? (e.target.innerText = 'Light Mode')
-    : (e.target.innerText = 'Dark Mode');
+  e.target.innerText === ' Dark Theme'
+    ? (e.target.innerHTML = `<i class="fa-solid fa-sun"></i> Light Theme`)
+    : (e.target.innerHTML = `<i class="fa-solid fa-moon"></i> Dark Theme`);
 });
