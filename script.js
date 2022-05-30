@@ -30,42 +30,53 @@ const genLi = (todo, state) => {
   </li>`;
 };
 
+const checkTodos = (arr, listArr, listHtml, htmlStr) => {
+  arr.length < 1
+    ? (listHtml.innerHTML = htmlStr)
+    : (listHtml.innerHTML = listArr);
+};
+
 const listTodos = () => {
   const todos = todoArr.map(todo => genLi(todo, 'done')).join('');
   const compTodos = completedTodosArr.map(todo => genLi(todo, 'undo')).join('');
 
-  completedTodosArr.length < 1
-    ? (completeList.innerHTML = `<h3>All completed</h3>`)
-    : (completeList.innerHTML = compTodos);
-
-  todoArr.length < 1
-    ? (todoList.innerHTML = `<h3>No more Todos</h3>`)
-    : (todoList.innerHTML = todos);
+  checkTodos(
+    completedTodosArr,
+    compTodos,
+    completeList,
+    '<h3>All completed</h3>'
+  );
+  checkTodos(todoArr, todos, todoList, '<h3>No more Todos</h3>');
 };
 
 listTodos();
+
+const deleteItem = (target, arr) => {
+  const arrIndex = arr.indexOf(
+    target.parentNode.previousElementSibling.textContent
+  );
+  arr.splice(arrIndex, 1);
+};
+
+const updateItem = (target, arr, arr2) => {
+  const arrIndex = arr.indexOf(
+    target.parentNode.previousElementSibling.textContent
+  );
+  arr2.unshift(target.parentNode.previousElementSibling.textContent);
+  arr.splice(arrIndex, 1);
+  target.parentNode.remove();
+};
 
 todoList.addEventListener('click', e => {
   e.preventDefault();
   const target = e.target;
   if (target.nodeName === 'BUTTON') {
     if (target.className === 'done') {
-      const arrIndex = todoArr.indexOf(
-        target.parentNode.previousElementSibling.textContent
-      );
-      completedTodosArr.unshift(
-        target.parentNode.previousElementSibling.textContent
-      );
-
-      todoArr.splice(arrIndex, 1);
-      target.parentNode.remove();
+      updateItem(target, todoArr, completedTodosArr);
     }
 
     if (target.className === 'delete') {
-      const arrIndex = todoArr.indexOf(
-        target.parentNode.previousElementSibling.textContent
-      );
-      todoArr.splice(arrIndex, 1);
+      deleteItem(target, todoArr);
     }
   }
 
@@ -77,19 +88,10 @@ completeList.addEventListener('click', e => {
   const target = e.target;
   if (target.nodeName === 'BUTTON') {
     if (target.className === 'undo') {
-      const arrIndex = completedTodosArr.indexOf(
-        target.parentNode.previousElementSibling.textContent
-      );
-      todoArr.push(target.parentNode.previousElementSibling.textContent);
-
-      completedTodosArr.splice(arrIndex, 1);
-      target.parentNode.remove();
+      updateItem(target, completedTodosArr, todoArr);
     }
     if (target.className === 'delete') {
-      const arrIndex = completedTodosArr.indexOf(
-        target.parentNode.previousElementSibling.textContent
-      );
-      completedTodosArr.splice(arrIndex, 1);
+      deleteItem(target, completedTodosArr);
     }
 
     listTodos();
